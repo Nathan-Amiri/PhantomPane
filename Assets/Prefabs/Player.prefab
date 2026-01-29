@@ -235,6 +235,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   sr: {fileID: 8735164606726623935}
   rb: {fileID: 3152412869357680047}
+  moveSpeed: 5
+  jumpForce: 12.5
 --- !u!50 &3152412869357680047
 Rigidbody2D:
   serializedVersion: 5

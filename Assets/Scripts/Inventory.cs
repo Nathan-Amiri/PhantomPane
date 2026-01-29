@@ -21,7 +21,7 @@ public class Inventory : MonoBehaviour
     private readonly List<PaneColor> gridColors = new(); // The current colors of the grid sections
     private int lastGridSection; // The last grid section that the mouse was in while dragging
 
-    private bool iCantFigureOutWhatToCallThis; // I CANNOT figure out how to express in words what this does, I'm way too tired for this, it works though
+    private bool wasOverGridLastFrame; // I CANNOT figure out how to express in words what this does, I'm way too tired for this, it works though
 
     private void Awake()
     {
@@ -87,7 +87,7 @@ public class Inventory : MonoBehaviour
     {
         if (CheckIfPositionIsInBox(mousePosition))
         {
-            iCantFigureOutWhatToCallThis = true;
+            wasOverGridLastFrame = true;
 
             slotSRs[draggingSlot].enabled = false;
             int currentGridSection = PaneNumberFinder.GetPaneNumber(mousePosition);
@@ -110,9 +110,9 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            if (iCantFigureOutWhatToCallThis) // So it only happens once
+            if (wasOverGridLastFrame) // So it only happens once
             {
-                iCantFigureOutWhatToCallThis = false;
+                wasOverGridLastFrame = false;
 
                 if (lastGridSection != -1)
                 {
@@ -144,7 +144,7 @@ public class Inventory : MonoBehaviour
 
         draggingSlot = -1;
         lastGridSection = -1;
-        iCantFigureOutWhatToCallThis = false;
+        wasOverGridLastFrame = false;
 
         player.ToggleStun(false);
     }
