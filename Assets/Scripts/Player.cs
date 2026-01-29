@@ -3,13 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public enum PaneColor { Colorless, Red, Blue, Green };
+
     // PREFAB REFERENCE:
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private Rigidbody2D rb;
 
     // CONSTANT:
-    private readonly float moveSpeed = 8;
-    private readonly float jumpForce = 15.5f;
+    public float moveSpeed = 8;
+    public float jumpForce = 15.5f;
     //private readonly float dashForce = 15;
     private readonly float fallMultiplier = 3; // Fastfall
     //private readonly float diagonalDashMultiplier = 2;
@@ -18,8 +20,6 @@ public class Player : MonoBehaviour
 
     // DYNAMIC:
     private bool isGrounded;
-
-    private Vector2 mousePosition;
 
     private bool isStunned;
 
@@ -45,10 +45,6 @@ public class Player : MonoBehaviour
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         if (Input.GetButtonDown("Jump"))
             jumpInput = true;
-
-        Vector3 tempMousePosition = Input.mousePosition;
-        tempMousePosition.z = -Camera.main.transform.position.z;
-        mousePosition = Camera.main.ScreenToWorldPoint(tempMousePosition);
     }
 
     private void FixedUpdate()
@@ -128,7 +124,8 @@ public class Player : MonoBehaviour
     public void Die() // Called by Spikes
     {
         sr.enabled = false;
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        isStunned = true;
+        rb.linearVelocity = Vector2.zero;
 
         Invoke(nameof(Restart), 1);
     }
@@ -137,7 +134,8 @@ public class Player : MonoBehaviour
         currentScene += 1;
 
         sr.enabled = false;
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        isStunned = true;
+        rb.linearVelocity = Vector2.zero;
 
         Invoke(nameof(Restart), 1);
     }
@@ -147,5 +145,8 @@ public class Player : MonoBehaviour
         SceneManager.LoadScene(currentScene);
     }
 
-
+    public void ToggleStun(bool on)
+    {
+        isStunned = on;
+    }
 }

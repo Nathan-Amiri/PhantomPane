@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelElement
   elementColor: 1
+  sr: {fileID: 280073154057658304}
 --- !u!114 &4259792026409979451
 MonoBehaviour:
   m_ObjectHideFlags: 0
