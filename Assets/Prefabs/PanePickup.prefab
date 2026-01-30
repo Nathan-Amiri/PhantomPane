@@ -82,8 +82,8 @@ SpriteRenderer:
   m_SortingLayerID: 1508800439
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.028301716, g: 0.3404324, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: b292a5f70b508cf44921a3aa2441ed47, type: 3}
+  m_Color: {r: 0.47843137, g: 0.6431373, b: 0.79607844, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -106,6 +106,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pane
   paneColor: 2
+  floatAmplitude: 0.1
+  floatSpeed: 1
 --- !u!50 &4559837276739017373
 Rigidbody2D:
   serializedVersion: 5
