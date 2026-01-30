@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     //private bool dashInput;
     //private bool hasDash;
 
-    private int currentScene;
+    static  int currentScene = 1;
 
     private void Update()
     {
@@ -134,7 +134,7 @@ public class Player : MonoBehaviour
         ToggleStun(true);
         rb.linearVelocity = Vector2.zero;
 
-        Invoke(nameof(Restart), 1);
+        Invoke(nameof(Restart), 1f);
     }
 
     private void Restart()
@@ -142,6 +142,7 @@ public class Player : MonoBehaviour
         // Must reset static int BEFORE going to new scene, otherwise stuff will be messed up during Awake of new scene
         PaneNumberFinder.rotationSteps = 0;
 
+        print( "Loading scene: " + currentScene);
         SceneManager.LoadScene(currentScene);
     }
 
