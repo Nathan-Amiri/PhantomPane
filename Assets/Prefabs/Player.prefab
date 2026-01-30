@@ -83,8 +83,8 @@ SpriteRenderer:
   m_SortingLayerID: 442895053
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.05704665, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 6171a97f6d293f6449dbf60d11065ef5, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -110,8 +110,13 @@ MonoBehaviour:
   rb: {fileID: 437952552602323268}
   myCol: {fileID: 2468383883543443102}
   groundCheckCol: {fileID: 6506034098088564745}
+  playZone: {fileID: 0}
   moveSpeed: 5
   jumpForce: 12.5
+  doubleJumpForce: 10
+  bounceForce: 35
+  horizontalBounceIncrease: 4
+  teleportDistance: 3
 --- !u!50 &437952552602323268
 Rigidbody2D:
   serializedVersion: 5

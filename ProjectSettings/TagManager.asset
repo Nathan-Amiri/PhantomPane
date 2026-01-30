@@ -52,6 +52,9 @@ TagManager:
   - name: Player
     uniqueID: 442895053
     locked: 0
+  - name: PlacedPanes
+    uniqueID: 1681652903
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1

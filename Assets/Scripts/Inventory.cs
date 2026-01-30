@@ -92,10 +92,16 @@ public class Inventory : MonoBehaviour
             slotSRs[draggingSlot].enabled = false;
             int currentGridSection = PaneNumberFinder.GetPaneNumber(mousePosition);
 
+            SetPaneSortingPlaced(currentGridSection);
+
             // If dragging to a new grid section, reset the one you left
             if (currentGridSection != lastGridSection && lastGridSection != -1)
             {
                 ChangePaneBackgroundColor(lastGridSection, gridColors[lastGridSection]);
+                if (gridColors[lastGridSection] == PaneColor.Colorless)
+                {
+                    SetPaneSortingDefault(lastGridSection);
+                }
 
                 foreach (LevelElement levelElement in LevelElement.levelElements[lastGridSection])
                     levelElement.NewPane(gridColors[lastGridSection]);
@@ -120,6 +126,10 @@ public class Inventory : MonoBehaviour
                         levelElement.NewPane(gridColors[lastGridSection]);
 
                     ChangePaneBackgroundColor(lastGridSection, gridColors[lastGridSection]);
+                    if (gridColors[lastGridSection] == PaneColor.Colorless)
+                    {
+                        SetPaneSortingDefault(lastGridSection);
+                    }
                 }
 
                 slotSRs[draggingSlot].enabled = true;
@@ -176,4 +186,15 @@ public class Inventory : MonoBehaviour
     {
         return !(position.x > 6 || position.x < -6 || position.y > 6 || position.y < -6);
     }
+
+    private void SetPaneSortingPlaced(int index)
+    {
+        paneBackgrounds[index].sortingLayerName = "PlacedPanes";
+    }
+
+    private void SetPaneSortingDefault(int index)
+    {
+        paneBackgrounds[index].sortingLayerName = "Default";
+    }
+
 }
