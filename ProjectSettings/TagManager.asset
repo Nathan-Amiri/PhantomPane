@@ -43,6 +43,9 @@ TagManager:
   - name: Background
     uniqueID: 2649506461
     locked: 0
+  - name: PlayElements
+    uniqueID: 1508800439
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

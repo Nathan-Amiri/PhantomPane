@@ -126,6 +126,7 @@ public class Inventory : MonoBehaviour
                         levelElement.NewPane(gridColors[lastGridSection]);
 
                     ChangePaneBackgroundColor(lastGridSection, gridColors[lastGridSection]);
+
                     if (gridColors[lastGridSection] == PaneColor.Colorless)
                     {
                         SetPaneSortingDefault(lastGridSection);
