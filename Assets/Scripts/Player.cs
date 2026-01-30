@@ -137,7 +137,7 @@ public class Player : MonoBehaviour
         Invoke(nameof(Restart), 1f);
     }
 
-    private void Restart()
+    public void Restart()
     {
         // Must reset static int BEFORE going to new scene, otherwise stuff will be messed up during Awake of new scene
         PaneNumberFinder.rotationSteps = 0;
