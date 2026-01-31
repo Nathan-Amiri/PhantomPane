@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 
     // SCENE REFERENCE:
     [SerializeField] private Transform playZone;
+    [SerializeField] private ScreenWipe screenWipe;
 
     // CONSTANT:
     public int worldNumber; // Set in each scene!!
@@ -51,7 +52,6 @@ public class Player : MonoBehaviour
             worldBackgroundColor = worldBackgroundColors[currentWorld - 1];
             worldPaneColor = worldPaneColors[currentWorld - 1];
         }
-
     }
 
     private void Update()
@@ -122,6 +122,8 @@ public class Player : MonoBehaviour
         ToggleStun(true);
         rb.linearVelocity = Vector2.zero;
 
+        screenWipe.StartWipe(true);
+
         Invoke(nameof(Restart), 1);
     }
     public void Win()
@@ -130,6 +132,8 @@ public class Player : MonoBehaviour
 
         ToggleStun(true);
         rb.linearVelocity = Vector2.zero;
+
+        screenWipe.StartWipe(false);
 
         Invoke(nameof(Restart), 1f);
     }

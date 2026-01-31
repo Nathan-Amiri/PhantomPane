@@ -9647,6 +9647,98 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3905205920883582210, guid: ab201b1fc97ed6d448f975e833211de2, type: 3}
   m_PrefabInstance: {fileID: 1693410185}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1694966337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1694966338}
+  - component: {fileID: 1694966340}
+  - component: {fileID: 1694966339}
+  - component: {fileID: 1694966341}
+  m_Layer: 5
+  m_Name: ScreenWipe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1694966338
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694966337}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1835338946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 2000, y: 0}
+  m_SizeDelta: {x: 2000, y: 1500}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1694966339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694966337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.8392157, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1694966340
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694966337}
+  m_CullTransparentMesh: 1
+--- !u!114 &1694966341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694966337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b580ae7de4bbe8438f7f309a6e2552b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenWipe
+  image: {fileID: 1694966339}
+  winColor: {r: 1, g: 0.8392157, b: 0, a: 1}
+  deathColor: {r: 0.9019608, g: 0.24705882, b: 0.21176471, a: 1}
+  wipeSpeed: 500
 --- !u!1001 &1710593574
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10086,7 +10178,7 @@ Canvas:
   m_GameObject: {fileID: 1835338942}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 330585545}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -10097,7 +10189,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 335718731
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1835338946
@@ -10117,6 +10209,7 @@ RectTransform:
   - {fileID: 766874640}
   - {fileID: 1309726392}
   - {fileID: 870136692}
+  - {fileID: 1694966338}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -11955,8 +12048,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1054577427}
     - target: {fileID: 2330202363777669941, guid: 37d0c0e19b6865c4383defff8bbbd2e4, type: 3}
+      propertyPath: screenWipe
+      value: 
+      objectReference: {fileID: 1694966341}
+    - target: {fileID: 2330202363777669941, guid: 37d0c0e19b6865c4383defff8bbbd2e4, type: 3}
       propertyPath: worldNumber
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2330202363777669941, guid: 37d0c0e19b6865c4383defff8bbbd2e4, type: 3}
       propertyPath: worldPaneColors.Array.size
@@ -12154,11 +12251,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5540636065856590517, guid: 39056b54b681248479f2a37fd0a3cd44, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.5
+      value: -2.86
       objectReference: {fileID: 0}
     - target: {fileID: 5540636065856590517, guid: 39056b54b681248479f2a37fd0a3cd44, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.25
+      value: -5.77
       objectReference: {fileID: 0}
     - target: {fileID: 5540636065856590517, guid: 39056b54b681248479f2a37fd0a3cd44, type: 3}
       propertyPath: m_LocalPosition.z
