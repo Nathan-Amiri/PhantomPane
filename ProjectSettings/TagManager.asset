@@ -58,6 +58,9 @@ TagManager:
   - name: PlacedPanes
     uniqueID: 1681652903
     locked: 0
+  - name: PanePickups
+    uniqueID: 1617951001
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1
