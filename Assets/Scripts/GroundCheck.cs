@@ -10,9 +10,13 @@ public class GroundCheck : MonoBehaviour
         offset = player.transform.position.y - transform.position.y;
         transform.parent = null;
     }
-    public void OnTriggerEnter2D(Collider2D col)
+    public void OnTriggerStay2D(Collider2D col)
     {
-        player.OnGroundCheckEnter(col);
+        player.OnGroundCheckStay(col);
+    }
+    public void OnTriggerExit2D(Collider2D col)
+    {
+        player.OnGroundCheckExit(col);
     }
 
     private void Update()

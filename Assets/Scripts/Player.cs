@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     //private bool dashInput;
     //private bool hasDash;
 
-    static  int currentScene = 1;
+    public static int currentScene = 1;
 
     private void Update()
     {
@@ -111,11 +111,19 @@ public class Player : MonoBehaviour
         //}
     }
 
-
-    public void OnGroundCheckEnter(Collider2D col)
+    public void OnGroundCheckStay(Collider2D col)
     {
         if (col.CompareTag("Terrain"))
+        {
             jumpCount = 2;
+        }
+    }
+    public void OnGroundCheckExit(Collider2D col)
+    {
+        if (col.CompareTag("Terrain"))
+        {
+            jumpCount = 1;
+        }
     }
 
     public void Die() // Called by Spikes
