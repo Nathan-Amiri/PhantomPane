@@ -23,9 +23,9 @@ public class Inventory : MonoBehaviour
 
     private bool wasOverGridLastFrame; // I CANNOT figure out how to express in words what this does, I'm way too tired for this, it works though
 
-    private Color32 red = new(208, 70, 60, 255);
-    private Color32 blue = new(122, 164, 203, 255);
-    private Color32 green = new(153, 255, 102, 255);
+    [SerializeField] private Color32 red = new(208, 70, 60, 255);
+    [SerializeField] private Color32 blue = new(122, 164, 203, 255);
+    [SerializeField] private Color32 green = new(153, 255, 102, 255);
 
     private void Awake()
     {
