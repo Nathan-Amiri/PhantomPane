@@ -41,34 +41,19 @@ TagManager:
   - 
   m_SortingLayers:
   - name: Background
-    uniqueID: 2649506461
+    uniqueID: 72881915
     locked: 0
-  - name: 1
-    uniqueID: 2717405469
+  - name: PaneBackgrounds
+    uniqueID: 1532718061
     locked: 0
-  - name: 2
-    uniqueID: 1770509087
-    locked: 0
-  - name: 3
-    uniqueID: 2195923131
-    locked: 0
-  - name: PlacedPanes
-    uniqueID: 1681652903
-    locked: 0
-  - name: PlayElements
-    uniqueID: 1508800439
+  - name: Dividers
+    uniqueID: 3314502745
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Player
-    uniqueID: 442895053
-    locked: 0
-  - name: StoredPanes
-    uniqueID: 654643185
-    locked: 0
-  - name: PanePickups
-    uniqueID: 1617951001
+    uniqueID: 672455109
     locked: 0
   m_RenderingLayers:
   - Default

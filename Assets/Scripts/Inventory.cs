@@ -23,9 +23,9 @@ public class Inventory : MonoBehaviour
 
     private bool wasOverGridLastFrame; // I CANNOT figure out how to express in words what this does, I'm way too tired for this, it works though
 
-    [SerializeField] private Color32 red = new(208, 70, 60, 255);
-    [SerializeField] private Color32 blue = new(122, 164, 203, 255);
-    [SerializeField] private Color32 green = new(153, 255, 102, 255);
+    [SerializeField] private Color redPaneColor;
+    [SerializeField] private Color bluePaneColor;
+    [SerializeField] private Color greenPaneColor;
 
     private void Awake()
     {
@@ -96,16 +96,10 @@ public class Inventory : MonoBehaviour
             slotSRs[draggingSlot].enabled = false;
             int currentGridSection = PaneNumberFinder.GetPaneNumber(mousePosition);
 
-            //SetPaneSortingPlaced(currentGridSection);
-
             // If dragging to a new grid section, reset the one you left
             if (currentGridSection != lastGridSection && lastGridSection != -1)
             {
                 ChangePaneBackgroundColor(lastGridSection, gridColors[lastGridSection]);
-                if (gridColors[lastGridSection] == PaneColor.Colorless)
-                {
-                    //SetPaneSortingDefault(lastGridSection);
-                }
 
                 foreach (LevelElement levelElement in LevelElement.levelElements[lastGridSection])
                     levelElement.NewPane(gridColors[lastGridSection]);
@@ -130,11 +124,6 @@ public class Inventory : MonoBehaviour
                         levelElement.NewPane(gridColors[lastGridSection]);
 
                     ChangePaneBackgroundColor(lastGridSection, gridColors[lastGridSection]);
-
-                    if (gridColors[lastGridSection] == PaneColor.Colorless)
-                    {
-                        //SetPaneSortingDefault(lastGridSection);
-                    }
                 }
 
                 slotSRs[draggingSlot].enabled = true;
@@ -151,7 +140,7 @@ public class Inventory : MonoBehaviour
 
             storedPanes[draggingSlot] = PaneColor.Colorless;
 
-            slotSRs[draggingSlot].color = Color.black;
+            slotSRs[draggingSlot].color = worldBackgroundColor;
 
             slotSRs[draggingSlot].enabled = true;
         }
@@ -168,7 +157,7 @@ public class Inventory : MonoBehaviour
     private void ChangePaneBackgroundColor(int paneBackgroundIndex, PaneColor paneColor)
     {
         float a = paneBackgrounds[paneBackgroundIndex].color.a;
-        Color newColor = GetColorFromEnum(paneColor); //paneColor == PaneColor.Colorless ? Color.black : GetColorFromEnum(paneColor); CHANGE THIS BACK, JUST FOR TEST SCENE!
+        Color newColor = GetColorFromEnum(paneColor);
         newColor.a = a;
         paneBackgrounds[paneBackgroundIndex].color = newColor;
     }
@@ -178,28 +167,17 @@ public class Inventory : MonoBehaviour
     private Color GetColorFromEnum(PaneColor color)
     {
         if (color == PaneColor.Red)
-            return red;
+            return redPaneColor;
         else if (color == PaneColor.Blue)
-            return blue;
+            return bluePaneColor;
         else if (color == PaneColor.Green)
-            return green;
+            return greenPaneColor;
         else
-            return Color.white;
+            return worldPaneColor;
     }
 
     private bool CheckIfPositionIsInBox(Vector2 position)
     {
         return !(position.x > 6 || position.x < -6 || position.y > 6 || position.y < -6);
     }
-
-    private void SetPaneSortingPlaced(int index)
-    {
-        paneBackgrounds[index].sortingLayerName = "PlacedPanes";
-    }
-
-    private void SetPaneSortingDefault(int index)
-    {
-        paneBackgrounds[index].sortingLayerName = "Default";
-    }
-
 }

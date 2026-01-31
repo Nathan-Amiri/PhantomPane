@@ -1,9 +1,15 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
     public enum PaneColor { Colorless, Red, Blue, Green };
+
+    public static int currentWorld;
+    public static Color worldBackgroundColor;
+    public static Color worldPaneColor;
 
     // PREFAB REFERENCE:
     [SerializeField] private SpriteRenderer sr;
@@ -15,27 +21,37 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform playZone;
 
     // CONSTANT:
+    public int worldNumber; // Set in each scene!!
+
     public float moveSpeed = 8;
     public float jumpForce = 15.5f;
     public float doubleJumpForce = 15.5f;
-    //private readonly float dashForce = 15;
     private readonly float fallMultiplier = 3; // Fastfall
-    //private readonly float diagonalDashMultiplier = 2;
-    //private readonly float horizontalDashMultiplier = 4.5f;
-    //private readonly float verticalDashMultiplier = 1.05f;
     public float bounceForce = 35;
     public float horizontalBounceIncrease = 4;
 
     public float teleportDistance = 3;
 
+    [SerializeField] private List<Color> worldBackgroundColors = new();
+    [SerializeField] private List<Color> worldPaneColors = new();
+
     // DYNAMIC:
     private Vector2 moveInput;
     private bool jumpInput;
     private int jumpCount;
-    //private bool dashInput;
-    //private bool hasDash;
 
-    public static int currentScene = 1;
+    public static int currentScene = 0;
+
+    private void Awake()
+    {
+        if (worldNumber != currentWorld)
+        {
+            currentWorld = worldNumber;
+            // Change music
+            worldBackgroundColor = worldBackgroundColors[currentWorld - 1];
+            worldPaneColor = worldPaneColors[currentWorld - 1];
+        }
+    }
 
     private void Update()
     {
@@ -81,34 +97,6 @@ public class Player : MonoBehaviour
                 rb.AddForce(Vector2.up * newForce, ForceMode2D.Impulse);
             }
         }
-
-        //if (dashInput)
-        //{
-        //    dashInput = false;
-
-        //    if (hasDash)
-        //    {
-        //        hasDash = false;
-
-        //        rb.linearVelocity = Vector2.zero;
-
-
-
-        //        // Because of the movement code, gravity, and the nature of diagonal vs straight dashing, different directions need custom values
-        //        Vector2 velocity = moveInput * dashForce;
-
-        //        if (moveInput.x != 0 && moveInput.y != 0) // Diagonal dashes get a horizontal boost
-        //            velocity.x *= diagonalDashMultiplier;
-        //        else if (moveInput.x == 0) // Vertical dashes get a slight boost
-        //            velocity *= verticalDashMultiplier;
-        //        else if (moveInput.y == 0) // Horizontal dashes get a large boost
-        //            velocity *= horizontalDashMultiplier;
-
-
-
-        //        rb.AddForce(velocity, ForceMode2D.Impulse);
-        //    }
-        //}
     }
 
     public void OnGroundCheckStay(Collider2D col)
@@ -150,7 +138,6 @@ public class Player : MonoBehaviour
         // Must reset static int BEFORE going to new scene, otherwise stuff will be messed up during Awake of new scene
         PaneNumberFinder.rotationSteps = 0;
 
-        print( "Loading scene: " + currentScene);
         SceneManager.LoadScene(currentScene);
     }
 

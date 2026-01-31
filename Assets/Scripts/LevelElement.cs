@@ -4,7 +4,7 @@ using static Player;
 
 public class LevelElement : MonoBehaviour
 {
-    public PaneColor elementColor;
+    public PaneColor paneColorThatRevealsMe;
 
     public static readonly List<List<LevelElement>> levelElements = new(); // List 0 = pane 0 elements, etc
 
@@ -32,7 +32,7 @@ public class LevelElement : MonoBehaviour
         int myPane = PaneNumberFinder.GetPaneNumber(transform.position);
         levelElements[myPane].Add(this);
 
-        if (elementColor != PaneColor.Colorless)
+        if (paneColorThatRevealsMe != PaneColor.Colorless)
             gameObject.SetActive(false);
 
         sr.enabled = true;
@@ -40,6 +40,6 @@ public class LevelElement : MonoBehaviour
 
     public void NewPane(PaneColor paneColor)
     {
-        gameObject.SetActive(paneColor == elementColor);
+        gameObject.SetActive(paneColor == paneColorThatRevealsMe);
     }
 }
