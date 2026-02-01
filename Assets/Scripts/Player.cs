@@ -1,4 +1,7 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,20 +9,28 @@ public class Player : MonoBehaviour
 {
     public enum PaneColor { Colorless, Red, Blue, Purple };
 
+    // STATIC:
     public static int currentWorld;
+    private static int levelNumber = 1;
+
     public static Color worldBackgroundColor;
     public static Color worldPaneColor;
 
+    public static int currentScene = 0;
+
+    private static bool tutorialHasDisplayedAtStart;
+
     // PREFAB REFERENCE:
-    [SerializeField] private SpriteRenderer sr;
+    [SerializeField] private List<SpriteRenderer> playerSRs = new();
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private CircleCollider2D myCol;
     [SerializeField] private CircleCollider2D groundCheckCol;
 
-
     // SCENE REFERENCE:
     [SerializeField] private Transform playZone;
     [SerializeField] private ScreenWipe screenWipe;
+    [SerializeField] private TMP_Text levelName;
+    [SerializeField] private GameObject tutorialScreen;
 
     // CONSTANT:
     public int worldNumber; // Set in each scene!!
@@ -28,10 +39,9 @@ public class Player : MonoBehaviour
     public float jumpForce = 15.5f;
     public float doubleJumpForce = 15.5f;
     private readonly float fallMultiplier = 3; // Fastfall
-    public float bounceForce = 35;
-    public float horizontalBounceIncrease = 4;
 
     public float teleportDistance = 3;
+    public float rotationSpeed = 150;
 
     [SerializeField] private List<Color> worldBackgroundColors = new();
     [SerializeField] private List<Color> worldPaneColors = new();
@@ -41,13 +51,20 @@ public class Player : MonoBehaviour
     private bool jumpInput;
     private int jumpCount;
 
-    public static int currentScene = 0;
+    [NonSerialized] public bool rotating; // Read by Inventory
 
     private void Awake()
     {
+        if (!tutorialHasDisplayedAtStart)
+        {
+            Tutorial();
+            tutorialHasDisplayedAtStart = true; // Never gets set back to false
+        }
+
         if (worldNumber != currentWorld)
         {
             currentWorld = worldNumber;
+            levelNumber = 1;
 
             //Changes music
             if (worldNumber != currentWorld)
@@ -73,6 +90,8 @@ public class Player : MonoBehaviour
             worldBackgroundColor = worldBackgroundColors[currentWorld - 1];
             worldPaneColor = worldPaneColors[currentWorld - 1];
         }
+
+        levelName.text = worldNumber + "-" + levelNumber;
     }
 
     private void Update()
@@ -138,18 +157,25 @@ public class Player : MonoBehaviour
 
     public void Die() // Called by Spikes
     {
+        rb.linearVelocity = Vector2.zero;
+        ToggleStun(true);
 
         GetComponentInChildren<Animator>().SetTrigger("isDie");
-        ToggleStun(true);
-        rb.linearVelocity = Vector2.zero;
-
+        Invoke(nameof(FinishDying), .3f);
+        // If we don't have a delay here we can't see the player death animation because the screenwipe is instant
+    }
+    private void FinishDying()
+    {
         screenWipe.StartWipe(true);
 
         Invoke(nameof(Restart), 1);
     }
+
     public void Win()
     {
         currentScene += 1;
+
+        levelNumber += 1;
 
         ToggleStun(true);
         rb.linearVelocity = Vector2.zero;
@@ -157,6 +183,18 @@ public class Player : MonoBehaviour
         screenWipe.StartWipe(false);
 
         Invoke(nameof(Restart), 1f);
+    }
+
+    public void SelectRestart()
+    {
+        if (rotating)
+            return;
+
+        rb.linearVelocity = Vector2.zero;
+        ToggleStun(true);
+
+        screenWipe.StartWipe(false);
+        Invoke(nameof(Restart), 1);
     }
 
     public void Restart()
@@ -174,27 +212,76 @@ public class Player : MonoBehaviour
         groundCheckCol.enabled = !on;
     }
 
-    public void Bouncer(Vector2 bounceDirection)
+    public void Teleporter(Vector3 teleporterPosition, Vector2 teleportDirection)
     {
-        rb.linearVelocity = Vector2.zero;
-
-        Vector2 bounceVelocity = bounceForce * bounceDirection;
-        bounceVelocity.x *= horizontalBounceIncrease;
-        rb.AddForce(bounceVelocity, ForceMode2D.Impulse);
-        jumpCount = 2;
+        StartCoroutine(TeleportRoutine(teleporterPosition, teleportDirection));
     }
 
-    public void Teleporter(Vector2 teleportDirection)
+    private IEnumerator TeleportRoutine(Vector3 teleporterPosition, Vector2 teleportDirection)
     {
         rb.linearVelocity = Vector2.zero;
+        ToggleStun(true);
 
-        transform.position += (Vector3)teleportDirection * teleportDistance;
+
+        foreach (SpriteRenderer sr in playerSRs)
+            sr.enabled = false;
+
+        yield return new WaitForSeconds(.15f);
+
+        transform.position = teleporterPosition + ((Vector3)teleportDirection * teleportDistance);
+
+        foreach (SpriteRenderer sr in playerSRs)
+            sr.enabled = true;
+
+        ToggleStun(false);
     }
 
     public void Rotator(bool rotateClockwise)
     {
+        if (rotating)
+            return;
+
         float rotation = rotateClockwise ? 90 : -90;
-        playZone.transform.rotation *= Quaternion.Euler(0, 0, rotation);
+        StartCoroutine(Rotate(rotation, rotationSpeed));
+
         PaneNumberFinder.Rotate(rotateClockwise);
+    }
+    public static event Action<bool> OnRotateStartStop; // bool = start
+    private IEnumerator Rotate(float rotation, float speed)
+    {
+        rotating = true;
+
+        ToggleStun(true);
+
+        OnRotateStartStop?.Invoke(true);
+
+        Quaternion target = playZone.rotation * Quaternion.Euler(0, 0, rotation);
+
+        while (Quaternion.Angle(playZone.rotation, target) > 0f)
+        {
+            playZone.rotation = Quaternion.RotateTowards(
+                playZone.rotation,
+                target,
+                speed * Time.deltaTime
+            );
+            yield return null;
+        }
+
+        ToggleStun(false);
+
+        OnRotateStartStop?.Invoke(false);
+
+        yield return new WaitForSeconds(.3f);
+
+        rotating = false;
+    }
+
+    public void Tutorial()
+    {
+        if (rotating)
+            return;
+
+        tutorialScreen.SetActive(!tutorialScreen.activeSelf);
+        ToggleStun(tutorialScreen.activeSelf);
     }
 }

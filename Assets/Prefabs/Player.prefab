@@ -221,11 +221,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1298b69cb9bb8d4b8a099cc3f6331cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  sr: {fileID: 5651875604343025495}
+  playerSRs:
+  - {fileID: 5651875604343025495}
+  - {fileID: 622806729631518342}
   rb: {fileID: 437952552602323268}
   myCol: {fileID: 2468383883543443102}
   groundCheckCol: {fileID: 6506034098088564745}
   playZone: {fileID: 0}
+  screenWipe: {fileID: 0}
+  levelName: {fileID: 0}
   worldNumber: 1
   moveSpeed: 5
   jumpForce: 12.5

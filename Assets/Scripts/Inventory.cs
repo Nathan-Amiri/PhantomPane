@@ -16,7 +16,7 @@ public class Inventory : MonoBehaviour
 
     private int draggingSlot = -1; // -1 = not dragging
 
-    private Player player;
+    [SerializeField] private Player player;
 
     private readonly List<PaneColor> gridColors = new(); // The current colors of the grid sections
     private int lastGridSection; // The last grid section that the mouse was in while dragging
@@ -27,10 +27,10 @@ public class Inventory : MonoBehaviour
     [SerializeField] private Color bluePaneColor;
     [SerializeField] private Color purplePaneColor;
 
+    [SerializeField] private GameObject tutorialScreen;
+
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-
         for (int i = 0; i < 6; i++)
         {
             storedPanes.Add(PaneColor.Colorless);
@@ -80,6 +80,12 @@ public class Inventory : MonoBehaviour
     // Drag and drop methods
     public void SelectPaneSlot(int slotNumber)
     {
+        if (tutorialScreen.activeSelf) // Since pane slots can be selected through UI fog objects
+            return;
+
+        if (player.rotating)
+            return;
+
         if (storedPanes[slotNumber] == PaneColor.Colorless)
             return;
 

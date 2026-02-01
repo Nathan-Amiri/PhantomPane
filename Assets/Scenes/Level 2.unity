@@ -7024,7 +7024,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -232, y: -221.41095}
-  m_SizeDelta: {x: 275, y: 327.239}
+  m_SizeDelta: {x: 225, y: 327.239}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1263590467
 MonoBehaviour:
@@ -8743,7 +8743,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -232, y: -221.41095}
-  m_SizeDelta: {x: 300, y: 342.822}
+  m_SizeDelta: {x: 250, y: 342.822}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1600424077
 MonoBehaviour:
@@ -9568,7 +9568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_Color: {r: 1, g: 0.8392157, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -9607,7 +9607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScreenWipe
   image: {fileID: 1694966339}
-  deathColor: {r: 0.9019608, g: 0.24705882, b: 0.21176471, a: 1}
+  deathColor: {r: 0.836478, g: 0.38471586, b: 0.36036938, a: 1}
   wipeSpeed: 500
 --- !u!1001 &1710593574
 PrefabInstance:
@@ -11922,12 +11922,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1054577427}
     - target: {fileID: 2330202363777669941, guid: 37d0c0e19b6865c4383defff8bbbd2e4, type: 3}
+      propertyPath: levelName
+      value: 
+      objectReference: {fileID: 766874641}
+    - target: {fileID: 2330202363777669941, guid: 37d0c0e19b6865c4383defff8bbbd2e4, type: 3}
       propertyPath: screenWipe
       value: 
       objectReference: {fileID: 1694966341}
     - target: {fileID: 2330202363777669941, guid: 37d0c0e19b6865c4383defff8bbbd2e4, type: 3}
       propertyPath: worldNumber
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2330202363777669941, guid: 37d0c0e19b6865c4383defff8bbbd2e4, type: 3}
       propertyPath: worldPaneColors.Array.size

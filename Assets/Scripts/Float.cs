@@ -6,6 +6,17 @@ public class Float : MonoBehaviour
     private readonly float floatSpeed = 2f;       // how fast it moves
     private Vector3 startPos;
 
+    private bool rotating;
+
+    private void OnEnable()
+    {
+        Player.OnRotateStartStop += RotationStartStop;
+    }
+    private void OnDisable()
+    {
+        Player.OnRotateStartStop -= RotationStartStop;
+    }
+
     private void Start()
     {
         startPos = transform.position; // save original position
@@ -13,8 +24,24 @@ public class Float : MonoBehaviour
 
     private void Update()
     {
-        // sine wave movement
-        float newY = startPos.y + Mathf.Sin(Time.time * floatSpeed) * floatAmplitude;
-        transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+        transform.rotation = Quaternion.identity; // Stay upright when rotating
+
+        if (!rotating)
+        {
+            // sine wave movement
+            float newY = startPos.y + Mathf.Sin(Time.time * floatSpeed) * floatAmplitude;
+
+            transform.position = new(transform.position.x, newY);
+        }
+    }
+
+    private void RotationStartStop(bool start)
+    {
+        rotating = start;
+
+        if (start)
+            transform.position = startPos;
+        else
+            startPos = transform.position;
     }
 }
