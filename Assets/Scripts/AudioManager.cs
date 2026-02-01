@@ -48,7 +48,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip teleportSfx;
     [Range(0f, 1f)][SerializeField] private float teleportVol = 1f;
 
-
+    [SerializeField] private AudioClip victorySfx;
+    [Range(0f, 1f)][SerializeField] private float victoryVol = 1f;
 
 
     private AudioSource musicA;
@@ -239,4 +240,5 @@ public class AudioManager : MonoBehaviour
     public void PlayScreenWipeSfx() => PlaySfx(screenWipeSfx, screenWipeVol);
     public void PlayTeleportSfx() => PlaySfx(teleportSfx, teleportVol);
 
+    public void PlayVictorySfx() => PlaySfx(victorySfx, victoryVol);
 }

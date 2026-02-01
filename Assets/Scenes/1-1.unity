@@ -6361,11 +6361,11 @@ MonoBehaviour:
   worldTransitionDelay: 0
   fadeOutTime: 1
   fadeInTime: 0
-  musicVolume: 1
+  musicVolume: 0.8
   jumpSfx: {fileID: 8300000, guid: 7f68535edb9f7b0439d08dbcb42eaa62, type: 3}
-  jumpVol: 1
+  jumpVol: 0.8
   doubleJumpSfx: {fileID: 8300000, guid: 753cd271cfd2bf342969a66fe2e5d9f5, type: 3}
-  doubleJumpVol: 1
+  doubleJumpVol: 0.8
   deathSfx: {fileID: 8300000, guid: 3a062498cf0fab04ea5abcb2fa03f65f, type: 3}
   deathVol: 1
   panePickupSfx: {fileID: 8300000, guid: 048b63a4b36ad42449c024495915a564, type: 3}
@@ -6378,8 +6378,10 @@ MonoBehaviour:
   rotateVol: 1
   screenWipeSfx: {fileID: 8300000, guid: a2b8ba509bec2a5499158547c5d0201f, type: 3}
   screenWipeVol: 1
-  teleportSfx: {fileID: 8300000, guid: 75b79220aa5c26440a3770166165b506, type: 3}
-  teleportVol: 1
+  teleportSfx: {fileID: 8300000, guid: 77b79e6e148005b409a3ea89717cdc30, type: 3}
+  teleportVol: 0.4
+  victorySfx: {fileID: 8300000, guid: 07a1ea6e5f938ef4ab713d2775a91d51, type: 3}
+  victoryVol: 0.75
 --- !u!1 &1071006754
 GameObject:
   m_ObjectHideFlags: 0
@@ -10167,7 +10169,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fd7fb62a1e8e1ff49af44692b41458b8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

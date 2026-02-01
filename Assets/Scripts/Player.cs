@@ -178,6 +178,8 @@ public class Player : MonoBehaviour
         ToggleStun(true);
         rb.linearVelocity = Vector2.zero;
 
+        AudioManager.Instance.PlayVictorySfx();
+
         screenWipe.StartWipe(false);
 
         Invoke(nameof(Restart), 1f);
