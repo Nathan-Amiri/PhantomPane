@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     public static int currentScene = 0;
 
     private static bool tutorialHasDisplayedAtStart;
+    private static bool titleHasDisplayedAtStart;
 
     // PREFAB REFERENCE:
     [SerializeField] private List<SpriteRenderer> playerSRs = new();
@@ -64,6 +65,13 @@ public class Player : MonoBehaviour
         {
             Tutorial(false);
             tutorialHasDisplayedAtStart = true; // Never gets set back to false
+        }
+
+        if (!titleHasDisplayedAtStart)
+        {
+            titleScreen.SetActive(true);
+
+            titleHasDisplayedAtStart = true; // Never gets set back to false
         }
 
         if (worldNumber != currentWorld)
