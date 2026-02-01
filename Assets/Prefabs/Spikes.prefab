@@ -257,7 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41e9d8d1ae3fa9e46b31d65cbded9a3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelElement
-  paneColorThatRevealsMe: 1
+  paneColorThatRevealsMe: 0
   sr: {fileID: 280073154057658304}
 --- !u!114 &1528481443765321812
 MonoBehaviour:
