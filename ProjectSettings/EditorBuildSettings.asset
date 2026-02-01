@@ -9,14 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/1-1.unity
     guid: 6f054c08a26c486419250bf7b126250d
   - enabled: 1
-<<<<<<< HEAD
     path: Assets/Scenes/1-3.unity
     guid: 2ef318b87cbc37f469db539a13359e8d
   - enabled: 1
     path: Assets/Scenes/2-2.unity
-=======
-    path: Assets/Scenes/2-1.unity
->>>>>>> parent of d56f9c6 (1-3 finished)
     guid: 28a71fa955fd1df4e9e31714a48138f7
   - enabled: 1
     path: Assets/Scenes/2-3.unity
