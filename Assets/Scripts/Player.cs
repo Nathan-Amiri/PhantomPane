@@ -48,7 +48,28 @@ public class Player : MonoBehaviour
         if (worldNumber != currentWorld)
         {
             currentWorld = worldNumber;
-            // Change music
+
+            //Changes music
+            if (worldNumber != currentWorld)
+            {
+                currentWorld = worldNumber;
+
+                if (AudioManager.Instance != null)
+                    AudioManager.Instance.SetWorldMusic(currentWorld);
+
+                worldBackgroundColor = worldBackgroundColors[currentWorld - 1];
+                worldPaneColor = worldPaneColors[currentWorld - 1];
+            }
+
+            if (AudioManager.Instance != null)
+            {
+                if (worldNumber == 1 && AudioManager.Instance != null)
+                    AudioManager.Instance.ForceStartWorldMusic(currentWorld);
+                else
+                    AudioManager.Instance.SetWorldMusic(currentWorld);
+            }
+
+
             worldBackgroundColor = worldBackgroundColors[currentWorld - 1];
             worldPaneColor = worldPaneColors[currentWorld - 1];
         }

@@ -6110,60 +6110,6 @@ Transform:
   - {fileID: 2098815229}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1057176142
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1057176144}
-  - component: {fileID: 1057176145}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1057176144
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1057176142}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1057176145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1057176142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd1ce36fa117aa54a83a9144404a8810, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  worldMusic:
-  - worldNumber: 1
-    music: {fileID: 8300000, guid: f5c3adc3d8e01b5409e59e5166594379, type: 3}
-  - worldNumber: 2
-    music: {fileID: 8300000, guid: 8f3096796685bd145b1a29229da27a79, type: 3}
-  worldTransitionDelay: 0
-  fadeOutTime: 1
-  fadeInTime: 0
-  musicVolume: 1
-  sfxVolume: 1
 --- !u!1 &1071006754
 GameObject:
   m_ObjectHideFlags: 0
@@ -9622,7 +9568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.8392157, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -9661,8 +9607,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScreenWipe
   image: {fileID: 1694966339}
-  winColor: {r: 0.04705883, g: 0.058823533, b: 0.07450981, a: 1}
-  deathColor: {r: 0.836478, g: 0.38471586, b: 0.36036938, a: 1}
+  winColor: {r: 1, g: 0.8392157, b: 0, a: 1}
+  deathColor: {r: 0.9019608, g: 0.24705882, b: 0.21176471, a: 1}
   wipeSpeed: 500
 --- !u!1001 &1710593574
 PrefabInstance:
@@ -11982,7 +11928,7 @@ PrefabInstance:
       objectReference: {fileID: 1694966341}
     - target: {fileID: 2330202363777669941, guid: 37d0c0e19b6865c4383defff8bbbd2e4, type: 3}
       propertyPath: worldNumber
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2330202363777669941, guid: 37d0c0e19b6865c4383defff8bbbd2e4, type: 3}
       propertyPath: worldPaneColors.Array.size
@@ -12258,7 +12204,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 774796937}
-  - {fileID: 1057176144}
   - {fileID: 330585546}
   - {fileID: 1008197837}
   - {fileID: 1902391172}

@@ -35,14 +35,14 @@ public class ScreenWipe : MonoBehaviour
         {
             transform.Translate(Time.deltaTime * wipeSpeed * Vector2.left);
 
-            if (transform.localPosition.x < (initialWipe ? -2000 : 0))
+            if (transform.localPosition.x < (initialWipe ? -2500 : 0))
             {
                 wiping = false;
 
                 if (initialWipe)
                 {
                     initialWipe = false;
-                    transform.localPosition = new(2000, 0);
+                    transform.localPosition = new(2500, 0);
                 }
             }
         }

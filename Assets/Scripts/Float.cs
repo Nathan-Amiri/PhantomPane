@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Float : MonoBehaviour
 {
-    public float floatAmplitude = 0.2f; // how far it moves up/down
+    private float floatAmplitude = 0.1f; // how far it moves up/down
     public float floatSpeed = 2f;       // how fast it moves
     private Vector3 startPos;
 
