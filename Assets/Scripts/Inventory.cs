@@ -7,6 +7,8 @@ public class Inventory : MonoBehaviour
     [SerializeField] private List<SpriteRenderer> slotSRs = new();
     [SerializeField] private List<SpriteRenderer> paneBackgrounds = new();
 
+    [SerializeField] Texture2D defaultCursorTexture;
+    [SerializeField] Texture2D handCursorTexture;
 
     private readonly List<Vector2> slotPositions = new();
 
@@ -57,8 +59,29 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    private bool defaultCursor = true;
+    private bool mouseOverInteractable;
+    public void ToggleMouseOverInteractable(bool over, int paneNumber = -1)
+    {
+        if (paneNumber != -1 && storedPanes[paneNumber] == PaneColor.Colorless)
+            return;
+        mouseOverInteractable = over;
+    }
     private void Update()
     {
+        if ((mouseOverInteractable || draggingSlot != -1) && defaultCursor)
+        {
+            defaultCursor = false;
+
+            Cursor.SetCursor(handCursorTexture, Vector2.zero, CursorMode.Auto);
+        }
+        if (!mouseOverInteractable && draggingSlot == -1 && !defaultCursor)
+        {
+            defaultCursor = true;
+
+            Cursor.SetCursor(defaultCursorTexture, Vector2.zero, CursorMode.Auto);
+        }
+
         Vector3 tempMousePosition = Input.mousePosition;
         tempMousePosition.z = -Camera.main.transform.position.z;
         mousePosition = Camera.main.ScreenToWorldPoint(tempMousePosition);

@@ -255,7 +255,7 @@ public class Player : MonoBehaviour
 
         OnRotateStartStop?.Invoke(true);
 
-        Quaternion target = playZone.rotation * Quaternion.Euler(0, 0, rotation);
+        Quaternion target = playZone.rotation * Quaternion.Euler(0, 0, -rotation);
 
         while (Quaternion.Angle(playZone.rotation, target) > 0f)
         {

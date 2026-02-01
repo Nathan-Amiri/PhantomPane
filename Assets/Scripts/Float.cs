@@ -24,14 +24,13 @@ public class Float : MonoBehaviour
 
     private void Update()
     {
-        transform.rotation = Quaternion.identity; // Stay upright when rotating
+        //transform.rotation = Quaternion.identity; // Stay upright when rotating
 
         if (!rotating)
         {
             // sine wave movement
-            float newY = startPos.y + Mathf.Sin(Time.time * floatSpeed) * floatAmplitude;
-
-            transform.position = new(transform.position.x, newY);
+            Vector3 offset = transform.up * (Mathf.Sin(Time.time * floatSpeed) * floatAmplitude);
+            transform.position = startPos + offset;
         }
     }
 
