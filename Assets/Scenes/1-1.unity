@@ -13245,6 +13245,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1179771535}
     m_Modifications:
+    - target: {fileID: 1693622739850324007, guid: d7438b8d1465e3a429315150374db13f, type: 3}
+      propertyPath: paneColorThatRevealsMe
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4705570382702718027, guid: d7438b8d1465e3a429315150374db13f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.5
