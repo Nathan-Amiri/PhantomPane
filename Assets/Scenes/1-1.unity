@@ -4286,11 +4286,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   worldMusic:
   - worldNumber: 1
-    music: {fileID: 8300000, guid: f5c3adc3d8e01b5409e59e5166594379, type: 3}
-  - worldNumber: 2
     music: {fileID: 8300000, guid: 8f3096796685bd145b1a29229da27a79, type: 3}
-  - worldNumber: 3
+  - worldNumber: 2
     music: {fileID: 8300000, guid: ba0d767629d0c9549a51151f71a562d5, type: 3}
+  - worldNumber: 3
+    music: {fileID: 8300000, guid: f5c3adc3d8e01b5409e59e5166594379, type: 3}
   worldTransitionDelay: 0
   fadeOutTime: 1
   fadeInTime: 0

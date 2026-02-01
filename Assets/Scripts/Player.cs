@@ -269,6 +269,8 @@ public class Player : MonoBehaviour
     {
         rotating = true;
 
+        rb.linearVelocity = Vector2.zero;
+        myCol.enabled = false;
         ToggleStun(true);
 
         OnRotateStartStop?.Invoke(true);
@@ -286,6 +288,7 @@ public class Player : MonoBehaviour
         }
 
         ToggleStun(false);
+        myCol.enabled = true;
 
         OnRotateStartStop?.Invoke(false);
 

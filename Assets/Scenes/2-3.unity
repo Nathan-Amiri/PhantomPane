@@ -2405,6 +2405,14 @@ PrefabInstance:
       propertyPath: paneColorThatRevealsMe
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6455792650530559068, guid: a2ef30e94152fc143a4abfe5570912a0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455792650530559068, guid: a2ef30e94152fc143a4abfe5570912a0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.05
+      objectReference: {fileID: 0}
     - target: {fileID: 7338887104055447218, guid: a2ef30e94152fc143a4abfe5570912a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.55
