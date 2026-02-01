@@ -61,6 +61,9 @@ TagManager:
   - name: MouseOver
     uniqueID: 2525922303
     locked: 0
+  - name: TitleScreen
+    uniqueID: 2587561351
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1

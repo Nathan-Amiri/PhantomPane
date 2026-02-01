@@ -19,8 +19,14 @@ public class ScreenWipe : MonoBehaviour
         StartWipe(justDied);
     }
 
-    public void StartWipe(bool deathWipe)
+    public void StartWipe(bool deathWipe, bool initial = false)
     {
+        if (initial)
+        {
+            initialWipe = true;
+            transform.localPosition = Vector3.zero;
+        }
+
         AudioManager.Instance.PlayScreenWipeSfx();
 
         justDied = deathWipe;

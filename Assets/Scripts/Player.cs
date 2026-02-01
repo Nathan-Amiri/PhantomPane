@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     [SerializeField] private TMP_Text levelName;
     [SerializeField] private GameObject tutorialScreen;
     [SerializeField] private ScreenShake screenShake;
+    [SerializeField] private GameObject titleScreen;
 
     // CONSTANT:
     public int worldNumber; // Set in each scene!!
@@ -96,6 +97,13 @@ public class Player : MonoBehaviour
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         if (Input.GetButtonDown("Jump"))
             jumpInput = true;
+
+        if (jumpInput && titleScreen != null && titleScreen.activeSelf)
+        {
+            titleScreen.SetActive(false);
+
+            screenWipe.StartWipe(false, true);
+        }
     }
 
     private void FixedUpdate()
