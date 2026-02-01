@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
             tutorialHasDisplayedAtStart = true; // Never gets set back to false
         }
 
-        if (!titleHasDisplayedAtStart)
+        if (!titleHasDisplayedAtStart && titleScreen != null)
         {
             titleScreen.SetActive(true);
 
