@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class ScreenWipe : MonoBehaviour
 {
     public Image image;
-    public Color winColor;
     public Color deathColor;
     public float wipeSpeed;
 
@@ -24,7 +23,7 @@ public class ScreenWipe : MonoBehaviour
     {
         justDied = deathWipe;
 
-        image.color = deathWipe ? deathColor : winColor;
+        image.color = deathWipe ? deathColor : Player.worldBackgroundColor;
 
         wiping = true;
     }
