@@ -1754,6 +1754,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
+  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -1879,6 +1880,51 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &330585548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc1568a0aaaf37c418d909765940e4e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenShake
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.6353288
+      outSlope: 1.6353288
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.12229957
+      value: 0.2
+      inSlope: -0.4446208
+      outSlope: -0.4446208
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.09423077
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.22786818
+      outSlope: -0.22786818
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &341899150
 GameObject:
   m_ObjectHideFlags: 0
@@ -12582,6 +12628,10 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2330202363777669941, guid: 37d0c0e19b6865c4383defff8bbbd2e4, type: 3}
+      propertyPath: screenShake
+      value: 
+      objectReference: {fileID: 330585548}
+    - target: {fileID: 2330202363777669941, guid: 37d0c0e19b6865c4383defff8bbbd2e4, type: 3}
       propertyPath: worldNumber
       value: 1
       objectReference: {fileID: 0}
@@ -12589,6 +12639,14 @@ PrefabInstance:
       propertyPath: tutorialScreen
       value: 
       objectReference: {fileID: 1800446411}
+    - target: {fileID: 2330202363777669941, guid: 37d0c0e19b6865c4383defff8bbbd2e4, type: 3}
+      propertyPath: screenShakeDuration
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2330202363777669941, guid: 37d0c0e19b6865c4383defff8bbbd2e4, type: 3}
+      propertyPath: screenShakeStrength
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2330202363777669941, guid: 37d0c0e19b6865c4383defff8bbbd2e4, type: 3}
       propertyPath: worldPaneColors.Array.size
       value: 3
@@ -12862,11 +12920,11 @@ Animator:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 774796937}
-  - {fileID: 1057176144}
   - {fileID: 330585546}
+  - {fileID: 1057176144}
   - {fileID: 1008197837}
   - {fileID: 1829704873}
   - {fileID: 1902391172}
   - {fileID: 1054577427}
   - {fileID: 1835338946}
+  - {fileID: 774796937}

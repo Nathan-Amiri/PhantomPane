@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     [SerializeField] private ScreenWipe screenWipe;
     [SerializeField] private TMP_Text levelName;
     [SerializeField] private GameObject tutorialScreen;
+    [SerializeField] private ScreenShake screenShake;
 
     // CONSTANT:
     public int worldNumber; // Set in each scene!!
@@ -42,6 +43,9 @@ public class Player : MonoBehaviour
 
     public float teleportDistance = 3;
     public float rotationSpeed = 150;
+
+    public float deathShakeDuration = .12f;
+    public float deathShakeStrength = .4f;
 
     [SerializeField] private List<Color> worldBackgroundColors = new();
     [SerializeField] private List<Color> worldPaneColors = new();
@@ -159,6 +163,8 @@ public class Player : MonoBehaviour
     {
         rb.linearVelocity = Vector2.zero;
         ToggleStun(true);
+
+        screenShake.StartShake(deathShakeDuration, deathShakeStrength);
 
         GetComponentInChildren<Animator>().SetTrigger("isDie");
         Invoke(nameof(FinishDying), .3f);
