@@ -11020,6 +11020,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1694966341}
     - target: {fileID: 2330202363777669941, guid: 37d0c0e19b6865c4383defff8bbbd2e4, type: 3}
+      propertyPath: levelNumber
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2330202363777669941, guid: 37d0c0e19b6865c4383defff8bbbd2e4, type: 3}
       propertyPath: screenShake
       value: 
       objectReference: {fileID: 330585548}

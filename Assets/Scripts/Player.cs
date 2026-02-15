@@ -10,14 +10,11 @@ public class Player : MonoBehaviour
     public enum PaneColor { Colorless, Red, Blue, Purple };
 
     // STATIC:
+    public static int currentScene;
     public static int currentWorld;
-    private static int levelNumber = 1;
 
     public static Color worldBackgroundColor;
     public static Color worldPaneColor;
-
-    public static int currentScene = 0;
-
     private static bool tutorialHasDisplayedAtStart;
     private static bool titleHasDisplayedAtStart;
 
@@ -37,11 +34,12 @@ public class Player : MonoBehaviour
 
     // CONSTANT:
     public int worldNumber; // Set in each scene!!
+    public int levelNumber; // Set in each scene!!
 
     public float moveSpeed = 8;
     public float jumpForce = 15.5f;
     public float doubleJumpForce = 15.5f;
-    private readonly float fallMultiplier = 3; // Fastfall
+    public float fallMultiplier = 1.8f; // Fastfall
 
     public float rotationSpeed = 150;
 
@@ -73,10 +71,11 @@ public class Player : MonoBehaviour
             titleHasDisplayedAtStart = true; // Never gets set back to false
         }
 
-        if (worldNumber != currentWorld)
+        currentScene = SceneManager.GetActiveScene().buildIndex;
+
+        if (worldNumber != currentWorld) // True the first time we've moved to a new world
         {
             currentWorld = worldNumber;
-            levelNumber = 1;
 
             if (worldNumber == 1)
                 AudioManager.Instance.ForceStartWorldMusic(currentWorld);
@@ -102,6 +101,7 @@ public class Player : MonoBehaviour
             transform.position = new(transform.position.x, -5.637f);
 
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
         if (Input.GetButtonDown("Jump"))
             jumpInput = true;
 
@@ -132,6 +132,9 @@ public class Player : MonoBehaviour
         if (jumpInput)
         {
             jumpInput = false;
+
+            if (tutorialScreen.activeSelf) // Can't check this in Update because of title screen logic
+                return;
 
             if (jumpCount > 0)
             {
@@ -186,9 +189,7 @@ public class Player : MonoBehaviour
 
     public void Win()
     {
-        currentScene += 1;
-
-        levelNumber += 1;
+        currentScene += 1; // It will be set to the new scene in awake anyway, but this is so Restart knows which scene to load
 
         ToggleStun(true);
         rb.linearVelocity = Vector2.zero;

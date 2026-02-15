@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 public class ScreenWipe : MonoBehaviour
 {
+    //public static bool titleScreen = true; // True when title screen is displayed at the start of the game
+    public GameObject titleScreen;
+
     public Image image;
     public Color deathColor;
     public float wipeSpeed;
@@ -15,6 +18,9 @@ public class ScreenWipe : MonoBehaviour
 
     private void Start()
     {
+        if (titleScreen != null && titleScreen.activeSelf)
+            return;
+
         transform.localPosition = Vector3.zero;
         StartWipe(justDied);
     }
