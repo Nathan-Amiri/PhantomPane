@@ -37,15 +37,17 @@ public class Player : MonoBehaviour
     public int worldNumber; // Set in each scene!!
     public int levelNumber; // Set in each scene!!
 
-    public float moveSpeed = 8;
-    public float jumpForce = 15.5f;
-    public float doubleJumpForce = 15.5f;
-    public float fallMultiplier = 1.8f; // Fastfall
+    private readonly float moveSpeed = 5;
+    private readonly float jumpForce = 12.5f;
+    private readonly float doubleJumpForce = 10;
+    private readonly float fallMultiplier = 1.8f; // Fastfall
+    
+    private readonly float aerialRollDrag = 1.5f;
 
-    public float rotationSpeed = 150;
+    private readonly float rotateSpeed = 150;
 
-    public float deathShakeDuration = .12f;
-    public float deathShakeStrength = .4f;
+    private readonly float deathShakeDuration = .12f;
+    private readonly float deathShakeStrength = .4f;
 
     [SerializeField] private List<Color> worldBackgroundColors = new();
     [SerializeField] private List<Color> worldPaneColors = new();
@@ -58,6 +60,8 @@ public class Player : MonoBehaviour
     [NonSerialized] public bool rotating; // Read by Inventory
 
     [NonSerialized] public bool isGrounded; // Read by Inventory
+
+    private float currentRollSpeed;
 
     private void Awake()
     {
@@ -106,6 +110,8 @@ public class Player : MonoBehaviour
             if (transform.position.y < -5.637f)
                 transform.position = new(transform.position.x, -5.637f);
         }
+
+        Roll();
 
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
@@ -270,7 +276,7 @@ public class Player : MonoBehaviour
         AudioManager.Instance.PlayRotateSfx();
 
         float rotation = rotateClockwise ? 90 : -90;
-        StartCoroutine(Rotate(rotation, rotationSpeed));
+        StartCoroutine(Rotate(rotation, rotateSpeed));
 
         PaneNumberFinder.Rotate(rotateClockwise);
     }
@@ -317,5 +323,22 @@ public class Player : MonoBehaviour
 
         tutorialScreen.SetActive(!tutorialScreen.activeSelf);
         ToggleStun(tutorialScreen.activeSelf);
+    }
+
+    private void Roll() // Run in Update
+    {
+        if (!myCol.enabled) // If stunned, pause rolling but don't change the cached currentRollSpeed so it'll resume correctly
+            return;
+
+        if (isGrounded) // Roll on ground
+        {
+            float radius = transform.localScale.x / 2;
+            float rotationAngle = rb.linearVelocityX * Time.deltaTime / radius;
+            currentRollSpeed = rotationAngle * Mathf.Rad2Deg;
+        }
+        else // Aerial roll drag
+            currentRollSpeed -= currentRollSpeed * aerialRollDrag * Time.deltaTime;
+
+        transform.Rotate(0, 0, -currentRollSpeed);
     }
 }

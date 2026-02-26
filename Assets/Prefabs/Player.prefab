@@ -234,11 +234,13 @@ MonoBehaviour:
   screenShake: {fileID: 0}
   titleScreen: {fileID: 0}
   worldNumber: 1
+  levelNumber: 0
   moveSpeed: 5
   jumpForce: 12.5
   doubleJumpForce: 10
   fallMultiplier: 1.8
-  rotationSpeed: 150
+  aerialRollDrag: 2
+  rotateSpeed: 150
   deathShakeDuration: 0.12
   deathShakeStrength: 0.4
   worldBackgroundColors:
@@ -279,7 +281,7 @@ Rigidbody2D:
   m_LinearDamping: 0.1
   m_AngularDamping: 0.05
   m_GravityScale: 3.5
-  m_Material: {fileID: 6200000, guid: 5e15e87c77f16af468d5f3e36b4b475b, type: 2}
+  m_Material: {fileID: 6200000, guid: 1fe310f7e9883654d84b4bc023be5d7c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
