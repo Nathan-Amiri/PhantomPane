@@ -71,18 +71,44 @@ public class Inventory : MonoBehaviour
     }
     private void Update()
     {
-        if ((mouseOverInteractable || draggingSlot != -1) && defaultCursor)
+        bool shouldBeDefault = true;
+        
+        if (player.isGrounded)
         {
-            defaultCursor = false;
-
-            Cursor.SetCursor(handCursorTexture, Vector2.zero, CursorMode.Auto);
+            if (mouseOverInteractable || draggingSlot != -1)
+                shouldBeDefault = false;
         }
-        if (!mouseOverInteractable && draggingSlot == -1 && !defaultCursor)
+        else
         {
-            defaultCursor = true;
-
-            Cursor.SetCursor(defaultCursorTexture, Vector2.zero, CursorMode.Auto);
+            if (mouseOverInteractable && mousePosition.x > 0)
+                shouldBeDefault = false;
         }
+
+        if (defaultCursor != shouldBeDefault)
+        {
+            defaultCursor = shouldBeDefault;
+            Cursor.SetCursor(defaultCursor ? defaultCursorTexture : handCursorTexture, Vector2.zero, CursorMode.Auto);
+        }
+
+
+        //if (!player.isGrounded && !defaultCursor && !(mouseOverInteractable && mousePosition.x > 0))
+        //{
+        //    defaultCursor = true;
+
+        //    Cursor.SetCursor(defaultCursorTexture, Vector2.zero, CursorMode.Auto);
+        //}
+        //else if ((mouseOverInteractable || draggingSlot != -1) && (player.isGrounded || mousePosition.x > 0) && defaultCursor)
+        //{
+        //    defaultCursor = false;
+
+        //    Cursor.SetCursor(handCursorTexture, Vector2.zero, CursorMode.Auto);
+        //}
+        //else if (!mouseOverInteractable && draggingSlot == -1 && !defaultCursor)
+        //{
+        //    defaultCursor = true;
+
+        //    Cursor.SetCursor(defaultCursorTexture, Vector2.zero, CursorMode.Auto);
+        //}
 
         Vector3 tempMousePosition = Input.mousePosition;
         tempMousePosition.z = -Camera.main.transform.position.z;
@@ -114,11 +140,16 @@ public class Inventory : MonoBehaviour
         if (storedPanes[slotNumber] == PaneColor.Colorless)
             return;
 
+        if (!player.isGrounded)
+            return;
+
         AudioManager.Instance.PlayPanePickupSfx();
 
         player.ToggleStun(true);
 
         draggingSlot = slotNumber;
+
+        slotSRs[draggingSlot].sortingOrder = 3;
     }
     private void DraggingPaneSlot() // Run in Update
     {
@@ -186,6 +217,8 @@ public class Inventory : MonoBehaviour
         AudioManager.Instance.PlayPanePlaceSfx();
 
         slotSRs[draggingSlot].transform.position = slotPositions[draggingSlot];
+
+        slotSRs[draggingSlot].sortingOrder = 2;
 
         draggingSlot = -1;
         lastGridSection = -1;

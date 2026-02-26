@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -55,6 +56,8 @@ public class Player : MonoBehaviour
     private int jumpCount;
 
     [NonSerialized] public bool rotating; // Read by Inventory
+
+    [NonSerialized] public bool isGrounded; // Read by Inventory
 
     private void Awake()
     {
@@ -133,7 +136,7 @@ public class Player : MonoBehaviour
         {
             jumpInput = false;
 
-            if (tutorialScreen.activeSelf) // Can't check this in Update because of title screen logic
+            if (!myCol.enabled) // Stunned, such as when dragging or when tutorial screen is active
                 return;
 
             if (jumpCount > 0)
@@ -157,6 +160,7 @@ public class Player : MonoBehaviour
         if (col.CompareTag("Terrain"))
         {
             jumpCount = 2;
+            isGrounded = true;
         }
     }
     public void OnGroundCheckExit(Collider2D col)
@@ -164,6 +168,7 @@ public class Player : MonoBehaviour
         if (col.CompareTag("Terrain"))
         {
             jumpCount = 1;
+            isGrounded = false;
         }
     }
 
