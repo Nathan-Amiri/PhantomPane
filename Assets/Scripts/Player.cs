@@ -94,14 +94,18 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.x > 5.637f)
-            transform.position = new(5.637f, transform.position.y);
-        if (transform.position.x < -5.637f)
-            transform.position = new(-5.637f, transform.position.y);
-        if (transform.position.y > 5.637f)
-            transform.position = new(transform.position.x, 5.637f);
-        if (transform.position.y < -5.637f)
-            transform.position = new(transform.position.x, -5.637f);
+        // Player boundaries:
+        if (!rotating)
+        {
+            if (transform.position.x > 5.637f)
+                transform.position = new(5.637f, transform.position.y);
+            if (transform.position.x < -5.637f)
+                transform.position = new(-5.637f, transform.position.y);
+            if (transform.position.y > 5.637f)
+                transform.position = new(transform.position.x, 5.637f);
+            if (transform.position.y < -5.637f)
+                transform.position = new(transform.position.x, -5.637f);
+        }
 
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
@@ -228,7 +232,7 @@ public class Player : MonoBehaviour
 
     public void ToggleStun(bool on)
     {
-        rb.constraints = on? RigidbodyConstraints2D.FreezeAll : RigidbodyConstraints2D.None;
+        rb.constraints = on ? RigidbodyConstraints2D.FreezeAll : RigidbodyConstraints2D.None;
         myCol.enabled = !on;
         groundCheckCol.enabled = !on;
     }
