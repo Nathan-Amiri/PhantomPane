@@ -3087,8 +3087,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  defaultCursorTexture: {fileID: 2800000, guid: 1beb433ff8330d645af9bfe56c06a7c0, type: 3}
-  handCursorTexture: {fileID: 2800000, guid: 97c52bf30c50d6747bc7be35d499c415, type: 3}
+  defaultCursorTexture: {fileID: 2800000, guid: 98aba7428f6194f4fa9750588f93fdf2, type: 3}
+  handCursorTexture: {fileID: 2800000, guid: 17d2c1ba5f4e42d43bbe3144a895de12, type: 3}
   player: {fileID: 0}
   redPaneColor: {r: 0.8156863, g: 0.27450982, b: 0.23529412, a: 1}
   bluePaneColor: {r: 0.47843137, g: 0.6431373, b: 0.79607844, a: 1}
