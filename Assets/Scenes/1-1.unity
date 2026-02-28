@@ -4444,13 +4444,13 @@ MonoBehaviour:
   rotateSfx: {fileID: 8300000, guid: 071dde0037ef69144b2b24f4eb34be73, type: 3}
   rotateVol: 1
   screenWipeSfx: {fileID: 8300000, guid: a2b8ba509bec2a5499158547c5d0201f, type: 3}
-  screenWipeVol: 1
+  screenWipeVol: 0.9
   teleportSfx: {fileID: 8300000, guid: 77b79e6e148005b409a3ea89717cdc30, type: 3}
   teleportVol: 0.5
   victorySfx: {fileID: 8300000, guid: 07a1ea6e5f938ef4ab713d2775a91d51, type: 3}
   victoryVol: 0.75
   paneHoverSfx: {fileID: 8300000, guid: a597dcc440834fb4081c19013eadba54, type: 3}
-  paneHoverVol: 0.4
+  paneHoverVol: 0.3
   uiButtonSfx: {fileID: 8300000, guid: f5c523a1f41e66b49a0080708805cee0, type: 3}
   uiButtonVol: 0.5
 --- !u!1 &1071006754
